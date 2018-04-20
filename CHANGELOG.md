@@ -4,6 +4,8 @@
   * Fehlerbehebungen:
     * Schriftarten zusätzlich als _.ttf_ hinzugefügt
     * Fehlerbehebungen für CSS Flex Attribut (WebKit)
+  * Anderes:
+    * Code refactoring: alle Funktionen in `eLearnVideoJS` und nicht mehr in anonymer Funktion
 * __0.4.0__ (zu eLearn.js 1.0.1):
   * Neuerungen:
     * Das _elearnvideo.js_ kann nun auch unabhängig vom _elearn.js_ verwendet werden
