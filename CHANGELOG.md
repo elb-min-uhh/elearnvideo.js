@@ -1,9 +1,14 @@
 ### elearnvideo.js
 
 * __0.4.1__:
+  * Neuerungen:
+    * Video Notizen mit der Klasse `hinted` erzeugen einen Hinweis, der beim
+    Anklicken die Notiz anzeigt, Vollbild beendet und das Video pausiert
   * Fehlerbehebungen:
     * Schriftarten zusätzlich als _.ttf_ hinzugefügt
     * Fehlerbehebungen für CSS Flex Attribut (WebKit)
+    * Im Vollbildmodus ist wieder ein Springen in der Zeit sowie
+    Lautstärkeänderung möglich
   * Anderes:
     * Code refactoring: alle Funktionen in `eLearnVideoJS` und nicht mehr in anonymer Funktion
 * __0.4.0__ (zu eLearn.js 1.0.1):
