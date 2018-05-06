@@ -25,7 +25,7 @@ den Editor _Atom_. Dort kann man einfach `<video>` in seine Markdown Datei
 einbauen und beim Export das _elearnvideo.js_ aktivieren und der Rest ist
 automatisiert.
 
-Die Datei [example.md](/quizJS_Dokumentation.md) wurde für das _atom-elearnjs_
+Die Datei [example.md](/example.md) wurde für das _atom-elearnjs_
 Paket geschrieben. Es erzeugt eine einfache _elearn.js_ Ausgabe, welche das
 Video beinhaltet.
 
