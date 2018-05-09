@@ -3,9 +3,13 @@
 * __0.4.2__:
   * Neuerungen:
     * Video Notizen mit der Klasse `stopping` stoppen das Video automatisiert
+    * Die Pfeiltasten erlauben ein Springen um 5 Sekunden vor und zurück
   * Fehlerbehebungen:
     * Bei `hinted` Notizen wird auch der entsprechende Tab automatisiert
     ausgewählt, wenn man auf den Hinweis klickt
+  * Notizhinweis erhält einen Schatten zur besseren Sichtbarkeit
+  * `Alle einblenden` steht in einer eigenen Zeile, um überschneidungen zu
+  vermeiden
 * __0.4.1__:
   * Neuerungen:
     * Video Notizen mit der Klasse `hinted` erzeugen einen Hinweis, der beim
