@@ -1165,7 +1165,9 @@ eLearnVideoJS.getUserVideoNotesContainer = function() {
 * Adds the "show all notes" checkbox to a notes container.
 */
 eLearnVideoJS.addShowAllTo = function(notes) {
+    notes.prepend('<div style="clear: both">');
     notes.prepend('<label class="show_all_notes"><input type="checkbox" name="show_all" value="show_all"/>Alle einblenden</label>');
+
     notes.find('input[name="show_all"]').on('change', function(e) {
         eLearnVideoJS.showAllNotes(notes, $(this).is(':checked'));
     });
