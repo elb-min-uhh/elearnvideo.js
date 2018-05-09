@@ -43,6 +43,89 @@ Gegebenenfalls müssen die Attribute _href_/_src_ angepasst werden, wenn Sie
 manuell kopiert werden. Allerdings wird empfohlen, die Ordnerstruktur
 beizubehalten, damit bspw. im _css_ verlinkte Schriftarten gefunden werden.
 
+### Zusätze
+
+Das _elearnvideo.js_ bietet nicht nur ein bestimmtes Player-Design an, sondern
+auch ergänzende Funktionen, welche hier kurz erklärt werden.
+
+#### Videoannotationen
+
+Unter dem Video können freie Videoannotationen ergänzt werden, welche dann
+automatisiert, während des Videos eingeblendet werden. Diese befinden
+sich immer unter dem Video und sind somit im Vollbild nicht sichtbar
+(Ergänzung _hinted_ beachten). Allerdings werden in der Zeitleiste gelbe
+Markierungen eingefügt, welche auf die Annotationen hinweisen.
+
+![Videoannotationen](assets/media/annotationen.png)
+
+Um solche Notizen einzubauen ergänzt man zunächst den folgenden Block direkt
+unter dem `<video>` Element:
+
+    <div class="video_notes timestamps">
+        // Notizen hier einfügen
+    </div>
+
+Innerhalb dieses `<div>` können nun einzelne Notizen ergänzt werden, welche
+bspw. so aussehen:
+
+    <div class="video_note" timefrom="0m01s" timeto="0m5s">
+        Hier werden zusätzliche Informationen zu dem Videoabschnitt eingeblendet.
+        Es scheint, als nehmen wir den nächsten Schritt.
+    </div>
+
+Dabei muss das Attribut `timefrom` gesetzt sein, das Attribut `timeto` ist
+optional. Wird letzteres nicht angegeben, wird die Notiz nicht wieder
+ausgeblendet. Mögliche Angaben sind in Form von Stunden (_h_), Minuten (_m_)
+und Sekunden (_s_) möglich, wie bereits in dem Beispiel gezeigt.
+Andere Beispiele wären `1h30s` oder `5m`. Lässt man die Einheit weg und gibt
+bspw. nur `15` an, wird der Wert als Sekunden interpretiert.
+
+In einer solchen Notiz kann beliebiger HTML Inhalt angezeigt werden.
+
+##### Annotationshinweis
+
+Ergänzt man die Klasse `hinted`, wird in dem Video zusätzlich durch ein
+`Notiz anzeigen` auf eine entsprechende Notiz hingewiesen. Klingt man auf
+diesen Hinweis wird zudem das Video automatisch pausiert, bei Bedarf der
+Vollbildmodus beendet und die Notiz per Animation hervorgehoben.
+
+    <div class="video_note hinted" timefrom="0m01s" timeto="0m5s">
+
+Ein stoppendes Video kann z.B. sinnvoll sein, wenn durch ein Quizelement zu
+einem bestimmten Zeitpunkt eine Verständisfrage gestellt werden soll.
+
+##### Automatisches Stoppen
+
+Das Video kann ab _v0.4.2_ automatisiert gestoppt werden, wenn der Notiz die
+Klasse `stopping` ergänzt wird. Diese Funktion wird ggf. nicht von allen Geräten
+unterstützt. Außerdem sollte diese Funktion nur in Verbindung mit `hinted`
+verwendet werden, um den Nutzer nicht durch ein einfach stoppendes Video zu
+verwirren.
+
+    <div class="video_note hinted stopping" timefrom="0m01s" timeto="0m5s">
+
+#### Nutzernotizen
+
+Es ist möglich, dem Nutzer die Möglichkeit zu geben, eigene Notizen zu
+hinterlassen.
+
+![Notizen](assets/media/notizen.png)
+
+Hierzu muss man dem `<video>` nur die Klasse `allow_user_notes`
+hinzufügen
+
+    <video class="allow_user_notes">
+        ...
+    </video>
+
+Diese Notizen werden ebenso bestimmten Zeiten zugeordnet und dem Nutzer wieder
+entsprechend angezeigt. In der Zeitleiste werden zudem blaue Markierungen
+eingefügt, welche auf die Notizen hinweisen.
+
+Da die Daten jedoch nur im lokalen Browserspeicher hinterlegt sind, ist es
+möglich sie zu exportieren und somit als Datei auch dem eigenen Gerät zu
+speichern.
+
 ## Beispiel
 
 Ein einfaches Beispiel für ein Videoelement mit Notizen:

@@ -1,5 +1,11 @@
 ### elearnvideo.js
 
+* __0.4.2__:
+  * Neuerungen:
+    * Video Notizen mit der Klasse `stopping` stoppen das Video automatisiert
+  * Fehlerbehebungen:
+    * Bei `hinted` Notizen wird auch der entsprechende Tab automatisiert
+    ausgewählt, wenn man auf den Hinweis klickt
 * __0.4.1__:
   * Neuerungen:
     * Video Notizen mit der Klasse `hinted` erzeugen einen Hinweis, der beim
