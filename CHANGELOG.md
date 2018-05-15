@@ -1,5 +1,10 @@
 ### elearnvideo.js
 
+* __0.4.3__:
+    * Fixes:
+        * Do not stop on stopping notes when skipping with the mouse
+        * Do not stop on stopping notes when toggling `Display all`
+
 * __0.4.2__:
     * New:
         * Support for localization including German and English language

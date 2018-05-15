@@ -1348,7 +1348,7 @@ eLearnVideoJS.initiateVideoNotes = function() {
         eLearnVideoJS.updateUserNotes(videoContainer);
 
         $(this).find('video').on('timeupdate', function(event) {
-            eLearnVideoJS.noteTimeUpdate($(e), videoNotesContainer, idx);
+            eLearnVideoJS.noteTimeUpdate($(e), videoNotesContainer, idx, event);
         });
     });
 
@@ -1466,8 +1466,11 @@ eLearnVideoJS.addNotesToProgressbar = function(videoContainer, index) {
 /**
 * Wird beim timeupdate event eines videos ausgeführt. Blendet notes ein oder aus
 * @param videoContainer: the .video-container wrapper around the video
+* @param notes_con: the video_notes_wrapper
+* @param index: index of the .elearnjs-video in all .elearnjs-videos
+* @param event: will be used to check if a video has to stop on a note or not
 */
-eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index) {
+eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index, event) {
     var vid = videoContainer.find('video')[0];
     var time = vid.currentTime;
 
@@ -1494,7 +1497,7 @@ eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index) {
                     // skip if already shown
                     if(display_note.length > 0) continue;
                     // create new node
-                    eLearnVideoJS.showVideoNote(notes_con, info, vid);
+                    eLearnVideoJS.showVideoNote(notes_con, info, vid, event && event.type === "timeupdate");
                 }
             }
         }
@@ -1510,7 +1513,7 @@ eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index) {
 * @param video (optional) if given, the video might stop or will get an overlay
 *              to hint the note
 */
-eLearnVideoJS.showVideoNote = function(notes_con, info, video) {
+eLearnVideoJS.showVideoNote = function(notes_con, info, video, stopAllowed) {
     var original_note = notes_con.find('.video_note.backup').filter('#'+info["index"]);
     var new_note = original_note.clone(true, true); // clone with all listeners
     new_note.removeClass('backup');
@@ -1535,8 +1538,12 @@ eLearnVideoJS.showVideoNote = function(notes_con, info, video) {
     if(info.hinted && video) {
         eLearnVideoJS.showVideoNoteHint(video, new_note);
     }
-    if(info.stopping && video) {
-        video.pause();
+    if(stopAllowed && info.stopping && video) {
+        // do not stop on time skip
+        if(!eLearnVideoJS.videoProgressMouseDown
+                || eLearnVideoJS.videoProgressMouseDownTarget.get(0) !== $(video).closest('.elearnjs-video').get(0)) {
+            video.pause();
+        }
     }
 };
 
@@ -1638,7 +1645,7 @@ eLearnVideoJS.checkVisibleNotes = function(videoContainer, notes_con) {
     }
 
     // hide video note hints, if all hinted notes are hidden
-    if(notes_con.find('.video_note.hinted').not('.backup').length === 0) {
+    if(notes_con.closest('.video_notes_container ').find('.video_note.hinted').not('.backup').length === 0) {
         videoContainer.find('.note-hint-con').remove();
     }
 };
