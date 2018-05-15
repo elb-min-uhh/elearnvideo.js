@@ -1,5 +1,5 @@
 /*
-* video.js v0.4.1 - 18/04/16
+* video.js v0.4.2 - 18/05/15
 * JavaScript Videoplayer - by Arne Westphal
 * eLearning Buero MIN-Fakultaet - Universitaet Hamburg
 */
