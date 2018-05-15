@@ -1,15 +1,19 @@
 ### elearnvideo.js
 
 * __0.4.2__:
-  * Neuerungen:
-    * Video Notizen mit der Klasse `stopping` stoppen das Video automatisiert
-    * Die Pfeiltasten erlauben ein Springen um 5 Sekunden vor und zurück
-  * Fehlerbehebungen:
-    * Bei `hinted` Notizen wird auch der entsprechende Tab automatisiert
-    ausgewählt, wenn man auf den Hinweis klickt
-  * Notizhinweis erhält einen Schatten zur besseren Sichtbarkeit
-  * `Alle einblenden` steht in einer eigenen Zeile, um überschneidungen zu
-  vermeiden
+    * New:
+        * Support for localization including German and English language
+        with `<.. lang="en">` or `eLearnVideoJS.setLanguage("en")`
+            * German is selected per default
+        * Video notes of class `stopping` stop the video automatically
+        * Arrow keys let the video skip 5 seconds
+    * Fixes:
+        * `hinted` notes select the correct note tab on click
+        * note hint shadow added for better visibility
+        * `Display all` in own line to prevent overlapping
+
+#### Older versions (currently not available in _english_)
+
 * __0.4.1__:
   * Neuerungen:
     * Video Notizen mit der Klasse `hinted` erzeugen einen Hinweis, der beim
