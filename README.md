@@ -1,21 +1,128 @@
 # elearnvideo.js
 
-Das _elearnvideo.js_ wurde als Erweiterung für
-[elearn.js](https://github.com/elb-min-uhh/elearn.js) entwickelt.
-Es ist aber auch alleine nutzbar, es wird jedoch _jQuery_ benötigt, damit
-_elearnvideo.js_ funktioniert.
+The _elearnvideo.js_ was developed as extension for
+[elearn.js](https://github.com/elb-min-uhh/elearn.js), but it is possible to
+use it without _elearn.js_. The framework _jQuery_ is necessary for
+_elearnvideo.js_ to work correctly.
 
-> There is no English or international version so far.
+## Usage
 
-## Nutzung
+If you want to use _elearnvideo.js_ with _elearn.js_ it is recommended to
+use the [atom-elearnjs](https://github.com/elb-min-uhh/atom-elearnjs)
+package.
 
-Zum Einbinden von _elearnvideo.js_ gibt es mehrere Möglichkeiten.
+To use _elearnvideo.js_ there are multiple possibilities described below.
 
-Ist das _elearnvideo.js_ eingebunden, wird jedes `<video>` zu einem
-_elearnvideo_. Um das zu verhindern kann dem Videoelement die Klasse
-`ignore_elearnvideo` ergänzt werden:
+If included every `<video>` will become a _elearnvideo_.
+To prevent a specific video becoming a _elearnvideo_ you can add the class
+`ignore_elearnvideo` to the `<video>`:
 
     <video class="ignore_elearnvideo">
+
+### With _elearn.js_
+
+With _elearn.js_ the easiest way to use _elearnvideo.js_ is the
+[atom-elearnjs](https://github.com/elb-min-uhh/atom-elearnjs) package for
+_Atom_. You can simply insert a `<video>` in your markdown file and
+the package will include _elearnvideo.js_ automatically, when detected.
+
+The file [example.md](/example.md) was created for the _atom-elearnjs_
+package. It will result in a basic _elearn.js_ script including the
+_elearnvideo_.
+
+### Manually
+
+To add _elearnvideo.js_ manually to your HTML file, add the following to the
+`<head>`:
+
+    <link rel="stylesheet" type="text/css" href="assets/css/elearnvideo.css">
+    <script type="text/javascript" src="assets/js/min.js"></script>
+    <script type="text/javascript" src="assets/js/elearnvideo.js"></script>
+
+__Hint:__ The files are in the _assets_ folder. You might have to change the
+attributes _href_/_src_, when copied to another directory.
+It is recommended to keep the structure so included _css_ files can use linked
+fonts.
+
+### Additional Features
+
+Besides the own design, _elearnvideo.js_ has additional features.
+
+#### Video Annotations
+
+You can add video annotations to the video. Those will be displayed below it,
+at specific times. Notes will not be visible in _fullscreen_ (check _hinted_
+below). On the progress bar the notes will be hinted anyways with a yellow marker.
+
+![Video Annotations](assets/media/annotationen.png)
+
+To add annotations like this you have to add the following directly below the
+`<video>`:
+
+    <div class="video_notes timestamps">
+        // Notizen hier einfügen
+    </div>
+
+The class `timestamps` will add a small timestamp, when displaying a note.
+Removing this, will display the note as is.
+
+To add notes you have to add blocks like this:
+
+    <div class="video_note" timefrom="0m01s" timeto="0m5s">
+        This is a note text.
+    </div>
+
+The attribute `timefrom` has to be set, the attribute `timeto` is optional.
+If `timeto` is not set, the note will not be hidden.
+You can write the time in a simple format. Simply write a number you like and
+the unit you like (one character) like `1h30s` for _1 hour and 30 seconds_ or
+`5m` for _5 minutes_.
+If you leave out the unit, the number will be interpreted as seconds:
+`15` for _15 seconds_.
+
+You can insert any HTML in this notes.
+
+##### Hint the Note in the Video
+
+To add a hint into the video, you can add the class `hinted` to the note:
+
+    <div class="video_note hinted" timefrom="0m01s" timeto="0m5s">
+
+Clicking on the hint will stop the video, close fullscreen and animate the note
+background to emphasize it.
+
+##### Automatic Stop
+
+From _v0.4.2_ on you can automatically stop a video at a note, without user
+interaction. Add the class `stopping` to the note as before:
+
+    <div class="video_note hinted stopping" timefrom="0m01s" timeto="0m5s">
+
+This function might not be supported on any device. It is recommended to always
+add the `hinted` class as above, when using `stopping`, so users are not
+irritated by a suddenly stopping video.
+
+A stopping video can be useful, when you want you want the user to solve
+_quiz_ elements at specific points in the video.
+
+#### User Notes
+
+It is possible, to let the user write his own notes to the video.
+
+![Notes](assets/media/notizen.png)
+
+To allow this, add the class `allow_user_notes` to the `<video>`.
+
+    <video class="allow_user_notes">
+        ...
+    </video>
+
+This notes will work just like the annotations. User notes are displayed with
+a blue marker on the progress bar.
+
+Because notes are only stored in the local storage, they can be exported and
+imported as JSON or CSV. This way users can backup their notes without relying
+on the browser. Also notes can be shared this way.
 
 ## Supported Languages
 
@@ -36,149 +143,26 @@ Available languages are:
 * _de_: German (default)
 * _en_: English
 
-### Mit elearn.js
+## Example
 
-Mit dem _elearn.js_ ist der einfachste Weg das
-[atom-elearnjs](https://github.com/elb-min-uhh/atom-elearnjs) Paket für
-den Editor _Atom_. Dort kann man einfach `<video>` in seine Markdown Datei
-einbauen und beim Export das _elearnvideo.js_ aktivieren und der Rest ist
-automatisiert.
+A basic example with user notes:
 
-Die Datei [example.md](/example.md) wurde für das _atom-elearnjs_
-Paket geschrieben. Es erzeugt eine einfache _elearn.js_ Ausgabe, welche das
-Video beinhaltet.
-
-### Manuell
-
-Um _elearnvideo.js_ manuell seiner HTML Datei hinzuzufügen, müssen die folgenden
-Zeilen in den `<head>`:
-
-    <link rel="stylesheet" type="text/css" href="assets/css/elearnvideo.css">
-    <script type="text/javascript" src="assets/js/min.js"></script>
-    <script type="text/javascript" src="assets/js/elearnvideo.js"></script>
-
-__Hinweis:__ Die Dateien befinden sich in dem assets _assets_ folder.
-Gegebenenfalls müssen die Attribute _href_/_src_ angepasst werden, wenn Sie
-manuell kopiert werden. Allerdings wird empfohlen, die Ordnerstruktur
-beizubehalten, damit bspw. im _css_ verlinkte Schriftarten gefunden werden.
-
-### Zusätze
-
-Das _elearnvideo.js_ bietet nicht nur ein bestimmtes Player-Design an, sondern
-auch ergänzende Funktionen, welche hier kurz erklärt werden.
-
-#### Videoannotationen
-
-Unter dem Video können freie Videoannotationen ergänzt werden, welche dann
-automatisiert, während des Videos eingeblendet werden. Diese befinden
-sich immer unter dem Video und sind somit im Vollbild nicht sichtbar
-(Ergänzung _hinted_ beachten). Allerdings werden in der Zeitleiste gelbe
-Markierungen eingefügt, welche auf die Annotationen hinweisen.
-
-![Videoannotationen](assets/media/annotationen.png)
-
-Um solche Notizen einzubauen ergänzt man zunächst den folgenden Block direkt
-unter dem `<video>` Element:
-
-    <div class="video_notes timestamps">
-        // Notizen hier einfügen
-    </div>
-
-Innerhalb dieses `<div>` können nun einzelne Notizen ergänzt werden, welche
-bspw. so aussehen:
-
-    <div class="video_note" timefrom="0m01s" timeto="0m5s">
-        Hier werden zusätzliche Informationen zu dem Videoabschnitt eingeblendet.
-        Es scheint, als nehmen wir den nächsten Schritt.
-    </div>
-
-Dabei muss das Attribut `timefrom` gesetzt sein, das Attribut `timeto` ist
-optional. Wird letzteres nicht angegeben, wird die Notiz nicht wieder
-ausgeblendet. Mögliche Angaben sind in Form von Stunden (_h_), Minuten (_m_)
-und Sekunden (_s_) möglich, wie bereits in dem Beispiel gezeigt.
-Andere Beispiele wären `1h30s` oder `5m`. Lässt man die Einheit weg und gibt
-bspw. nur `15` an, wird der Wert als Sekunden interpretiert.
-
-In einer solchen Notiz kann beliebiger HTML Inhalt angezeigt werden.
-
-##### Annotationshinweis
-
-Ergänzt man die Klasse `hinted`, wird in dem Video zusätzlich durch ein
-`Notiz anzeigen` auf eine entsprechende Notiz hingewiesen. Klingt man auf
-diesen Hinweis wird zudem das Video automatisch pausiert, bei Bedarf der
-Vollbildmodus beendet und die Notiz per Animation hervorgehoben.
-
-    <div class="video_note hinted" timefrom="0m01s" timeto="0m5s">
-
-Ein stoppendes Video kann z.B. sinnvoll sein, wenn durch ein Quizelement zu
-einem bestimmten Zeitpunkt eine Verständisfrage gestellt werden soll.
-
-##### Automatisches Stoppen
-
-Das Video kann ab _v0.4.2_ automatisiert gestoppt werden, wenn der Notiz die
-Klasse `stopping` ergänzt wird. Diese Funktion wird ggf. nicht von allen Geräten
-unterstützt. Außerdem sollte diese Funktion nur in Verbindung mit `hinted`
-verwendet werden, um den Nutzer nicht durch ein einfach stoppendes Video zu
-verwirren.
-
-    <div class="video_note hinted stopping" timefrom="0m01s" timeto="0m5s">
-
-#### Nutzernotizen
-
-Es ist möglich, dem Nutzer die Möglichkeit zu geben, eigene Notizen zu
-hinterlassen.
-
-![Notizen](assets/media/notizen.png)
-
-Hierzu muss man dem `<video>` nur die Klasse `allow_user_notes`
-hinzufügen
-
-    <video class="allow_user_notes">
-        ...
-    </video>
-
-Diese Notizen werden ebenso bestimmten Zeiten zugeordnet und dem Nutzer wieder
-entsprechend angezeigt. In der Zeitleiste werden zudem blaue Markierungen
-eingefügt, welche auf die Notizen hinweisen.
-
-Da die Daten jedoch nur im lokalen Browserspeicher hinterlegt sind, ist es
-möglich sie zu exportieren und somit als Datei auch dem eigenen Gerät zu
-speichern.
-
-## Beispiel
-
-Ein einfaches Beispiel für ein Videoelement mit Notizen:
-
-    <!--
-    Nachfolgendes Video mit Kommentaren nur mit dem elearnvideo.js und zugehörigem
-    elearnvideo.css möglich
-    Nutzer können selbst Notizen (Text) hinterlegen. Diese werden der Video-Src zugeordnet.
-    Ändert man diese `src` sind die persönlichen Notizen zu dem Video weg.
-    -->
     <video preload="auto" controls="controls" class="allow_user_notes">
-            <source src="assets/media/beispiel-video.mp4" type="video/mp4"></source>
-            <source src="assets/media/beispiel-video.webm" type="video/webm"></source>
-            Dein Browser unterstützt kein HTML5-Video. Um dir das Video dennoch ansehen zu können,
-            folge einfach diesem <a href="assets/media/beispiel-video.mp4">Link</a>.
+            <source src="assets/media/example.mp4" type="video/mp4"></source>
+            <source src="assets/media/example.webm" type="video/webm"></source>
+            Your browser does not support this video.
     </video>
     <div class="video_notes timestamps">
-        <h4>Videoannotationen</h4>
+        <h4>Video Annotations</h4>
         <div class="video_note" timefrom="0m01s" timeto="0m5s">
-            Hier werden zusätzliche Informationen zu dem Videoabschnitt eingeblendet.
-            Es scheint, als nehmen wir den nächsten Schritt.
+            First simple note.
         </div>
-        <div class="video_note" timefrom="0m14s">
-            Das war 's eigentlich auch schon damit.
-        </div>
-        <div class="video_note" timefrom="0m5s" timeto="0m14s">
-            Hallo! Hier nur ein kurzes Beispielvideo, um zu zeigen,
-            wie man mit einem HTML-Video-Tag ein Video in ein Markdown
-            Dokument einbinden kann.
+        <div class="video_note hinted stopping" timefrom="0m5s" timeto="0m14s">
+            Second note. This one will stop the video automatically.
         </div>
     </div>
 
-Das funktionierende Beispiel kann man hier betrachten
-https://elb-min-uhh.github.io/elearnvideo.js/.
+A working example https://elb-min-uhh.github.io/elearnvideo.js/.
 
 
 ## License

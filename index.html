@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="elearnvideo, video, js, elearn.js">
@@ -17,10 +17,10 @@
             }
         </style>
 
-		<title>elearnvideo.js Beispiel</title>
+		<title>elearnvideo.js example</title>
 	</head>
 	<body>
-        <h1>Einfaches elearnvideo.js Beispiel</h1>
+        <h1>Simple example</h1>
 
         <!-- Nachfolgendes Video mit Kommentaren nur mit dem video.js und zugehörigem video.css möglich -->
         <!-- Nutzer können selbst Notizen (Text) hinterlegen. Diese werden der Video-Src zugeordnet. Ändert man diese
@@ -28,31 +28,24 @@
         <video preload="auto" controls="controls" class="allow_user_notes">
                 <source src="assets/media/beispiel-video.mp4" type="video/mp4"></source>
                 <source src="assets/media/beispiel-video.webm" type="video/webm"></source>
-                Dein Browser unterstützt kein HTML5-Video. Um dir das Video dennoch ansehen zu können,
-                folge einfach diesem <a href="assets/media/beispiel-video.mp4">Link</a>.
+                Your browser does not support this video.
         </video>
         <div class="video_notes timestamps">
-            <h4>Videoannotationen</h4>
-            <div class="video_note hinted stopping" timefrom="0m01s" timeto="0m5s">
-                Hier werden zusätzliche Informationen zu dem Videoabschnitt eingeblendet. Es scheint, als nehmen wir den nächsten Schritt.
+            <h4>Video Annotations</h4>
+            <div class="video_note" timefrom="0m01s" timeto="0m5s">
+                First simple note.
             </div>
-            <div class="video_note" timefrom="0m14s">
-                Das war 's eigentlich auch schon damit.
-            </div>
-            <div class="video_note" timefrom="0m5s" timeto="0m14s">
-                Hallo! Hier nur ein kurzes Beispielvideo, um zu zeigen,
-                wie man mit einem HTML-Video-Tag ein Video in ein Markdown
-                Dokument einbinden kann.
+            <div class="video_note hinted stopping" timefrom="0m5s" timeto="0m14s">
+                Second note. This one will stop the video automatically.
             </div>
         </div>
 
-        <h2>Ignoriertes Video</h2>
+        <h2>Ignored Video</h2>
 
         <video preload="auto" controls="controls" class="ignore_elearnvideo">
                 <source src="assets/media/beispiel-video.mp4" type="video/mp4"></source>
                 <source src="assets/media/beispiel-video.webm" type="video/webm"></source>
-                Dein Browser unterstützt kein HTML5-Video. Um dir das Video dennoch ansehen zu können,
-                folge einfach diesem <a href="assets/media/beispiel-video.mp4">Link</a>.
+                Your browser does not support this video.
         </video>
 	</body>
 </html>
