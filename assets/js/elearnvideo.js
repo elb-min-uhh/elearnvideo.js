@@ -1476,14 +1476,10 @@ eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index) {
         var backup_note = notes_con.find('.video_note.backup').filter('#'+info["index"]);
         var display_note = notes_con.find('.video_note').not('.backup').filter('#'+info["index"]);
 
-        if(info.user_note) console.log(info);
-
         if(!backup_note.closest('.note_container').is('.show_all')) {
             // time not reached
             if(info["time"] > time) {
                 // remove
-
-                if(info.user_note) console.log("hide");
                 eLearnVideoJS.hideVideoNote(notes_con, display_note);
             }
             else if(info["time"] <= time) {
@@ -1492,14 +1488,12 @@ eLearnVideoJS.noteTimeUpdate = function(videoContainer, notes_con, index) {
                     && info["time_to"] != -1
                     && info["time_to"] <= time) {
                     // remove
-                    if(info.user_note) console.log("hide2");
                     eLearnVideoJS.hideVideoNote(notes_con, display_note);
                 }
                 else {
                     // skip if already shown
                     if(display_note.length > 0) continue;
                     // create new node
-                    if(info.user_note) console.log("show");
                     eLearnVideoJS.showVideoNote(notes_con, info, vid);
                 }
             }
@@ -1584,7 +1578,6 @@ eLearnVideoJS.showVideoNoteHint = function(video, note) {
         con.append(hint);
         var hinttext = $('<span lang-code="notehint">');
         hint.append(hinttext);
-        eLearnVideoJS.localizeElement(hinttext);
 
         // prevent mouseup/down events
         hint.on('mousedown mouseup', function(event) {
@@ -1628,6 +1621,7 @@ eLearnVideoJS.showVideoNoteHint = function(video, note) {
         });
 
         parent.append(con);
+        eLearnVideoJS.localizeElement(hinttext);
     }
 }
 
@@ -2058,11 +2052,9 @@ eLearnVideoJS.importFileChosen = function(videoContainer, e, overwrite) {
         try {
             var notes;
             if(type === eLearnVideoJS.FILETYPE_JSON) {
-                console.log("1", event.target.result);
                 notes = JSON.parse(event.target.result);
             }
             else if(type === eLearnVideoJS.FILETYPE_CSV) {
-                console.log("2", event.target.result);
                 notes = JSON.parse(eLearnVideoJS.getJSONFromCSV(event.target.result));
             }
             else {
