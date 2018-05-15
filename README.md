@@ -17,6 +17,25 @@ _elearnvideo_. Um das zu verhindern kann dem Videoelement die Klasse
 
     <video class="ignore_elearnvideo">
 
+## Supported Languages
+
+The _elearnvideo.js_ supports a simple language selection. The default language
+is _german_. To change it, you can do one of the following:
+
+1. A `lang` attribute will cause this node and all included _elearnvideo.js_ nodes to
+appear in the selected language. E.g. `<html lang="en">` to change the language
+for the whole document. It is recommended to use the `lang` attribute only
+on the `<html>` element and nowhere else because you will get an inconsistent
+document. Changing the `lang` attribute after the document was
+loaded will not change already localized elements. Use method _2_ for this.
+2. The `eLearnVideoJS.setLanguage("en")` function can be used to set the language from
+inside a script. You can use this for _atom-elearnjs_ projects in the
+_meta custom_ block. This may be overwritten by the first method if present.
+
+Available languages are:
+* _de_: German (default)
+* _en_: English
+
 ### Mit elearn.js
 
 Mit dem _elearn.js_ ist der einfachste Weg das
