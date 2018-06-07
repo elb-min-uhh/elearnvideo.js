@@ -1,6 +1,9 @@
 ### elearnvideo.js
 
 * __0.4.3__:
+    * General
+        * CSS -> SASS/SCSS: use variables for color styling
+        * Changed a few colors
     * Fixes:
         * Do not stop on stopping notes when skipping with the mouse
         * Do not stop on stopping notes when toggling `Display all`
